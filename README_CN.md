@@ -15,7 +15,7 @@
 Jarvis/
 |-- vosk-model/
 |--|-- README.md
-|  |-- vosk-model-small-cn-0.22/
+|--|-- vosk-model-small-cn-0.22/
 ```
 
 "vosk-model-small-cn-0.22"目录名你也可以改成别的名字，只要跟`.env`文件中的`SPEECH_MODEL_PATH`配置项的值一样。
@@ -27,7 +27,7 @@ Jarvis/
 开发调试时使用的国内`Moonshot`平台提供的 AI 接口，但实际不限制，
 只要符合 OpenAI 接口规范的 AI 都可以使用。
 
-仅测试使用可以去[Moonshot](https://platform.moonshot.cn)注册账号，新用户会赠送一部分用量。
+仅测试使用可以去[Moonshot](https://platform.moonshot.cn)注册账号，新用户会赠送一部分 token 用量。
 注册完成后，就可以生成 AI API Key 了，如图：
 
 ![AI API Key](https://github.com/yimuc/Jarvis/blob/master/example/moonshot-api-key.png?raw=true)

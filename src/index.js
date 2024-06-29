@@ -11,7 +11,8 @@ const {
   speechModelPath,
   speakerModelPath,
   hotWordWakeUp,
-  conversationInactivityLimit
+  conversationInactivityLimit,
+  speakSpeed,
 } = env;
 
 const ai = new AI;
@@ -68,7 +69,7 @@ wfReader.on('format', async ({ audioFormat, sampleRate, channels }) => {
         const message = await ai.simpleChat(speakText);
         console.log(chalk.bold.blue('Jarvis:'), message);
 
-        say.speak(message, undefined, 1, err => {
+        say.speak(message, undefined, speakSpeed, err => {
           if (err) {
             console.error(chalk.red('Jarvis speak error.'), err);
           }

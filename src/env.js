@@ -12,6 +12,7 @@ const {
   AI_ERROR_VOICE_CONTENT,
   CONVERSATION_INACTIVITY_LIMIT = '2',
   CONVERSATION_HISTORY_LIMIT = '10',
+  SPEAK_SPEED = '1.1',
 } = process.env;
 
 function genEnvErrMsg(envKey, curr) {
@@ -73,6 +74,10 @@ if (!/^\d{1,3}$/.test(CONVERSATION_HISTORY_LIMIT) || +CONVERSATION_HISTORY_LIMIT
   printError(genEnvErrMsg('CONVERSATION_HISTORY_LIMIT', CONVERSATION_HISTORY_LIMIT));
 }
 
+if (!/^[0-9](\.\d)?$/.test(SPEAK_SPEED)) {
+  printError(genEnvErrMsg('SPEAK_SPEED', SPEAK_SPEED));
+}
+
 export default {
   speechModelPath: VOSK_MODEL_DIR + SPEECH_MODEL_PATH,
   speakerModelPath: useSpeakerModel ? VOSK_MODEL_DIR + SPEAKER_MODEL_PATH : undefined,
@@ -84,4 +89,5 @@ export default {
   errorVoiceContent: AI_ERROR_VOICE_CONTENT,
   conversationInactivityLimit: +CONVERSATION_INACTIVITY_LIMIT * 60 * 1000,
   conversationHistoryLimit: +CONVERSATION_HISTORY_LIMIT * 2,
+  speakSpeed: +SPEAK_SPEED,
 };
