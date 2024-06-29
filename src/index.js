@@ -75,6 +75,8 @@ wfReader.on('format', async ({ audioFormat, sampleRate, channels }) => {
           console.log(chalk.grey('Jarvis speak end.'));
           recording.resume();
         });
+      } else {
+        console.log(chalk.grey('Ignore:'), speakText);
       }
     } else {
       // console.log('End of speech: false.', JSON.stringify(rec.partialResult(), null, 4));

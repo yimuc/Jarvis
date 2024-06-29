@@ -34,11 +34,15 @@ Jarvis/
 
 然后把 Key 填入`.env`文件中的`AI_API_KEY`的值。
 
+## 检查配置文件
+
+使用`npm run check-env`自动检查`.env`文件配置是否有效。
+
 ## FAQ
 
 ### 不同 AI 是否支持？
 
-如果你选择别的 AI 平台也是可用的，只要符合 OpenAI chat 接口规范（市场上的 AI 基本都是可以的）。
+大部分 AI 平台都是支持的，只要符合 OpenAI Chat 接口规范（市场上的 AI 基本都是可以的）。
 
 对应`.env`文件中的`AI_BASE_URL`、`AI_MODEL`、`AI_API_KEY`三个配置项。
 
