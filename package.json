@@ -1,0 +1,29 @@
+{
+  "name": "jarvis",
+  "version": "1.0.0",
+  "description": "Jarvis is a voice assistant based on Node.js.",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node -r dotenv/config .",
+    "check-env": "node -r dotenv/config ./src/env && node -e \"console.log('This is okay.')\""
+  },
+  "engines": {
+    "preinstall": "npx only-allow pnpm",
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "voice assistant"
+  ],
+  "author": "hu@yimuc.com",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "dotenv": "^16.4.5",
+    "node-record-lpcm16": "^1.0.1",
+    "openai": "^4.52.1",
+    "say": "^0.16.0",
+    "vosk": "^0.3.39",
+    "wav": "^1.0.2"
+  }
+}
