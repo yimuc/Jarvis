@@ -9,9 +9,17 @@ Jarvis 是一个基于 node.js 的语音助手，它通过设备录音，分析�
 ## Working
 
 ```
-  Device recording -> SoX(Speech-to-text) -> AI chat api -> Text-to-speech on the device -> Play audio
-  Local            -> Local               -> Remote      -> Local                        -> Local
+Device recording -> SoX(Speech-to-text) -> AI chat api -> Text-to-speech on the device -> Play audio
+Local            -> Local               -> Remote      -> Local                        -> Local
 ```
+
+## Platform
+
+- Mac OS
+- Windows
+- Linux
+- Raspberry Pi
+- Others
 
 ## Dependencies
 
