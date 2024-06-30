@@ -34,9 +34,13 @@ Jarvis/
 
 然后把 Key 填入`.env`文件中的`AI_API_KEY`的值。
 
-## 检查配置文件
+### 4. 检查配置文件
 
 使用`npm run check-env`自动检查`.env`文件配置是否有效。
+
+### 5. 启动
+
+当一切配置准备就绪后，执行`npm start`启动程序。
 
 ## FAQ
 

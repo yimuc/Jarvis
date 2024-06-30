@@ -47,3 +47,7 @@ Working version for Windows is 14.4.1. You can [download the binaries](https://s
 ## Check your .env file
 
 `npm run check-env`
+
+## Launch
+
+`npm start`
