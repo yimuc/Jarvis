@@ -2,14 +2,13 @@ import fs from 'fs';
 import chalk from 'chalk';
 
 const {
+  LANGUAGE = 'cn',
   SPEECH_MODEL_PATH = '',
   SPEAKER_MODEL_PATH = '',
   AI_BASE_URL,
   AI_MODEL,
   AI_API_KEY,
-  HOT_WORD_WAKE_UP,
-  AI_SYSTEM_MESSAGE,
-  AI_ERROR_VOICE_CONTENT,
+  PLUGIN_TODO_LIST,
   CONVERSATION_INACTIVITY_LIMIT = '2',
   CONVERSATION_HISTORY_LIMIT = '10',
   SPEAK_SPEED = '1.1',
@@ -54,16 +53,8 @@ if (!AI_API_KEY) {
   printError(genEnvErrMsg('AI_API_KEY'));
 }
 
-if (!HOT_WORD_WAKE_UP) {
-  printError(genEnvErrMsg('HOT_WORD_WAKE_UP'));
-}
-
-if (!AI_SYSTEM_MESSAGE) {
-  printError(genEnvErrMsg('AI_SYSTEM_MESSAGE'));
-}
-
-if (!AI_ERROR_VOICE_CONTENT) {
-  printError(genEnvErrMsg('AI_ERROR_VOICE_CONTENT'));
+if (!LANGUAGE) {
+  printError(genEnvErrMsg('LANGUAGE'));
 }
 
 if (!/^\d{1,3}$/.test(CONVERSATION_INACTIVITY_LIMIT) || +CONVERSATION_INACTIVITY_LIMIT < 1) {
@@ -79,15 +70,14 @@ if (!/^[0-9](\.\d)?$/.test(SPEAK_SPEED)) {
 }
 
 export default {
+  I18N: (await import(`./i18n/${LANGUAGE}.json`, { assert: { type: "json" } })).default,
   speechModelPath: VOSK_MODEL_DIR + SPEECH_MODEL_PATH,
   speakerModelPath: useSpeakerModel ? VOSK_MODEL_DIR + SPEAKER_MODEL_PATH : undefined,
   model: AI_MODEL,
   baseURL: AI_BASE_URL,
   apiKey: AI_API_KEY,
-  hotWordWakeUp: HOT_WORD_WAKE_UP,
-  systemMessage: AI_SYSTEM_MESSAGE,
-  errorVoiceContent: AI_ERROR_VOICE_CONTENT,
   conversationInactivityLimit: +CONVERSATION_INACTIVITY_LIMIT * 60 * 1000,
   conversationHistoryLimit: +CONVERSATION_HISTORY_LIMIT * 2,
   speakSpeed: +SPEAK_SPEED,
+  enablePluginTodoList: !!PLUGIN_TODO_LIST,
 };

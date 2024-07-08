@@ -2,20 +2,18 @@ import { Readable } from "stream";
 import recorder from 'node-record-lpcm16';
 import vosk from 'vosk';
 import wav from "wav";
-import say from 'say';
 import chalk from 'chalk';
 import AI from './ai.js';
+import TaskPlayer from "./taskPlayer.js";
+import Plugins from './plugins.js';
 import env from './env.js';
 
 const {
+  I18N,
   speechModelPath,
   speakerModelPath,
-  hotWordWakeUp,
   conversationInactivityLimit,
-  speakSpeed,
 } = env;
-
-const ai = new AI;
 
 vosk.setLogLevel(0);
 const model = new vosk.Model(speechModelPath);
@@ -27,6 +25,14 @@ const wfReadable = new Readable().wrap(wfReader);
 const recording = recorder.record({
   sampleRate: 44100,
 });
+
+const taskPlayer = new TaskPlayer({
+  speakStart: () => recording.pause(),
+  speakEnd: () => recording.resume(),
+});
+const plugins = new Plugins(taskPlayer);
+await plugins.init();
+const ai = new AI(plugins.prompts);
 
 let lastConversationTimestamp = 0;
 
@@ -56,7 +62,7 @@ wfReader.on('format', async ({ audioFormat, sampleRate, channels }) => {
       const now = +new Date;
       const isOldConversation = now - lastConversationTimestamp < conversationInactivityLimit;
 
-      if (isOldConversation || speakText.startsWith(hotWordWakeUp)) {
+      if (isOldConversation || speakText.startsWith(I18N.HOT_WORD_WAKE_UP)) {
         lastConversationTimestamp = now;
 
         if (!isOldConversation) {
@@ -64,18 +70,8 @@ wfReader.on('format', async ({ audioFormat, sampleRate, channels }) => {
         }
 
         console.log(chalk.bold.green('     I:'), speakText);
-        recording.pause();
-
-        const message = await ai.simpleChat(speakText);
-        console.log(chalk.bold.blue('Jarvis:'), message);
-
-        say.speak(message, undefined, speakSpeed, err => {
-          if (err) {
-            console.error(chalk.red('Jarvis speak error.'), err);
-          }
-          console.log(chalk.grey('Jarvis speak end.'));
-          recording.resume();
-        });
+        const reply = await ai.simpleChat(speakText);
+        plugins.emit(reply.id, reply.response);
       } else {
         console.log(chalk.grey('Ignore:'), speakText);
       }

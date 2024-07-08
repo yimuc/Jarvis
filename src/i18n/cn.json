@@ -1,0 +1,22 @@
+{
+   "HOT_WORD_WAKE_UP": "请",
+   "AI_SYSTEM_MESSAGE": "你是一个语音助手，名叫Jarvis，你尽量精简回复内容。",
+   "AI_SYSTEM_MESSAGE_DATETIME": "现在的时间是：",
+   "AI_ERROR_VOICE_CONTENT": "对不起，我出现了一点问题，无法为您服务。",
+   "AI_COMMAND_TIPS": "你支持一些指令：",
+   "AI_EXPECTED_OUTCOME": "期望结果：",
+   "PLUGINS": {
+      "NORMAL": {
+         "NAME": "通用回复。",
+         "DESCRIPTION": "是你正常回复的文本内容。",
+         "RESPONSE": "你回复的内容"
+      },
+      "TODO_LIST": {
+         "NAME": "待办事项。",
+         "DESCRIPTION": "可以在指定的时间后，提醒事项内容，并且确认此事项。",
+         "RESPONSE_TIME": "指定的时间戳",
+         "RESPONSE_CONTENT": "指定的提醒事项",
+         "RESPONSE_ACKNOWLEDGEMENT": "确认事项的回复"
+      }
+   }
+}

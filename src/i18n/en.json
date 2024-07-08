@@ -1,0 +1,22 @@
+{
+   "HOT_WORD_WAKE_UP": "Please",
+   "AI_SYSTEM_MESSAGE": "You are a voice assistant named Jarvis, and you try to keep your responses as concise as possible.",
+   "AI_SYSTEM_MESSAGE_DATETIME": "The current time is:",
+   "AI_ERROR_VOICE_CONTENT": "I apologize, I'm experiencing a problem and cannot serve you at the moment.",
+   "AI_COMMAND_TIPS": "You support some commands:",
+   "AI_EXPECTED_OUTCOME": "Expected outcome:",
+   "PLUGINS": {
+      "NORMAL": {
+         "NAME": "Standard reply.",
+         "DESCRIPTION": "It is the text content of your normal response.",
+         "RESPONSE": "The content of your reply"
+      },
+      "TODO_LIST": {
+         "NAME": "To-do list.",
+         "DESCRIPTION": "Can remind the content of the matter after a specified time, and acknowledge this matter.",
+         "RESPONSE_TIME": "specific timestamp",
+         "RESPONSE_CONTENT": "specific reminder item",
+         "RESPONSE_ACKNOWLEDGEMENT": "Acknowledgment of the matter's response"
+      }
+   }
+}
